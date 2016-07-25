@@ -10,6 +10,15 @@ public class Book {
 
     private Date publication;
 
+    public Book() {
+    }
+
+    public Book(String name, Author author, Date publication) {
+        this.name = name;
+        this.author = author;
+        this.publication = publication;
+    }
+
     public void print() {
         System.out.print(this.toString());
     }

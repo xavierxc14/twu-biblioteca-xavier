@@ -3,6 +3,7 @@ package com.twu.biblioteca;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 
@@ -16,6 +17,7 @@ public class BibliotecaAppTest {
     @Before
     public void setUp() throws Exception {
         app = new BibliotecaApp();
+        app.populateBooks();
         System.setOut(new PrintStream(out));
     }
 
@@ -28,5 +30,19 @@ public class BibliotecaAppTest {
     public void listAllBooksTest() throws Exception {
         app.listAllBooks();
         assertEquals("|Test-driven Development: By Example\t|\tKent Beck\t|\t2003|", out.toString());
+    }
+
+    @Test
+    public void menuOptionsTest() throws Exception {
+        app.menuOptions();
+        assertEquals("1. List Books", out.toString());
+    }
+
+    @Test
+    public void getMenuOptionTest() throws Exception {
+        ByteArrayInputStream in = new ByteArrayInputStream("1".getBytes());
+        System.setIn(in);
+        assertEquals(1, app.getMenuOption());
+
     }
 }
