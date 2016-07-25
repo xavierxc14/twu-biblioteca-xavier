@@ -27,6 +27,6 @@ public class BibliotecaAppTest {
     @Test
     public void listAllBooksTest() throws Exception {
         app.listAllBooks();
-        assertEquals("Test-driven Development: By Example", out.toString());
+        assertEquals("|Test-driven Development: By Example\t|\tKent Beck\t|\t2003|", out.toString());
     }
 }
