@@ -10,6 +10,8 @@ public class Book {
 
     private Date publication;
 
+    private boolean checkedOut;
+
     public Book() {
     }
 
@@ -52,5 +54,13 @@ public class Book {
 
     public void setPublication(Date publication) {
         this.publication = publication;
+    }
+
+    public boolean isCheckedOut() {
+        return checkedOut;
+    }
+
+    public void setCheckedOut(boolean checkedOut) {
+        this.checkedOut = checkedOut;
     }
 }

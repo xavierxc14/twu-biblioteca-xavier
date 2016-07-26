@@ -1,5 +1,7 @@
 package com.twu.biblioteca;
 
+import com.twu.biblioteca.model.Author;
+import com.twu.biblioteca.model.Book;
 import com.twu.biblioteca.util.FileUtil;
 import org.junit.Before;
 import org.junit.Test;
@@ -7,6 +9,7 @@ import org.junit.Test;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
+import java.util.Date;
 import java.util.List;
 
 import static org.junit.Assert.assertEquals;
@@ -30,19 +33,18 @@ public class BibliotecaAppTest {
 
     @Test
     public void listAllBooks() throws Exception {
+        Book book = new Book("Scrum", new Author("A smart person"), new Date());
+        book.setCheckedOut(true);
+        app.getBooks().add(book);
         app.listAllBooks();
-        assertEquals("|Test-driven Development: By Example\t|\tKent Beck\t|\t2003|\n", out.toString());
+        assertEquals(FileUtil.load(BibliotecaApp.BOOK_FILE).get(0) + "\n", out.toString());
     }
 
     @Test
     public void menuOptions() throws Exception {
-        List<String> menu = FileUtil.load(BibliotecaApp.MENU_FILE);
-        StringBuilder sb = new StringBuilder();
-        for (String line : menu) {
-            sb.append(line).append("\n");
-        }
+        String menu = readMenu();
         app.menuOptions();
-        assertEquals(sb.toString(), out.toString());
+        assertEquals(menu, out.toString());
     }
 
     @Test
@@ -59,14 +61,27 @@ public class BibliotecaAppTest {
 
     @Test
     public void repeatMenu() throws Exception {
+        String menu = readMenu();
+        ByteArrayInputStream in = new ByteArrayInputStream("0".getBytes());
+        System.setIn(in);
+        app.repeatMenu();
+        assertEquals(menu, out.toString());
+    }
+
+    @Test
+    public void checkoutBook() throws Exception {
+        Book book = new Book();
+        app.checkoutBook(book);
+        assertEquals(true, book.isCheckedOut());
+        assertEquals(BibliotecaApp.CHECKED_OUT_MESSAGE + "\n", out.toString());
+    }
+
+    private String readMenu() {
         List<String> menu = FileUtil.load(BibliotecaApp.MENU_FILE);
         StringBuilder sb = new StringBuilder();
         for (String line : menu) {
             sb.append(line).append("\n");
         }
-        ByteArrayInputStream in = new ByteArrayInputStream("0".getBytes());
-        System.setIn(in);
-        app.repeatMenu();
-        assertEquals(sb.toString(), out.toString());
+        return sb.toString();
     }
 }

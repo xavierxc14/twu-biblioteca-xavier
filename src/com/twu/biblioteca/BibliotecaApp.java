@@ -14,8 +14,14 @@ public class BibliotecaApp {
 
     public static final String INVALID_OPTION = "Select a valid option!";
     public static final String WELCOME = "Welcome customer!";
-    public static final String MENU_FILE = System.getProperty("user.dir") + File.separator +
-            "resources" + File.separator + "menu.txt";
+    public static final String CHECKED_OUT_MESSAGE = "Thank you! Enjoy the book";
+
+    private static final String PATH = System.getProperty("user.dir") + File.separator +
+            "resources" + File.separator;
+
+    public static final String MENU_FILE = PATH + "menu.txt";
+    public static final String BOOK_FILE = PATH + "book.txt";
+
     private List<Book> books;
 
     public static void main(String[] args) {
@@ -25,7 +31,7 @@ public class BibliotecaApp {
         app.repeatMenu();
     }
 
-    public void options(int option) {
+    private void options(int option) {
         switch (option) {
             case 1:
                 showTableHeaders();
@@ -41,7 +47,7 @@ public class BibliotecaApp {
         return WELCOME;
     }
 
-    public void showTableHeaders() {
+    private void showTableHeaders() {
         System.out.println("-----------------------------------------------------------------");
         System.out.println("|Book title\t\t\t\t\t\t\t\t|\tAuthor\t\t|\tYear|");
         System.out.println("-----------------------------------------------------------------");
@@ -49,7 +55,9 @@ public class BibliotecaApp {
 
     public void listAllBooks() {
         for (Book b : books) {
-            b.print();
+            if (!b.isCheckedOut()) {
+                b.print();
+            }
         }
     }
 
@@ -84,5 +92,18 @@ public class BibliotecaApp {
             options(option);
             option = getMenuOption();
         }
+    }
+
+    public void checkoutBook(Book book) {
+        book.setCheckedOut(true);
+        System.out.println(CHECKED_OUT_MESSAGE);
+    }
+
+    public List<Book> getBooks() {
+        return books;
+    }
+
+    public void setBooks(List<Book> books) {
+        this.books = books;
     }
 }
