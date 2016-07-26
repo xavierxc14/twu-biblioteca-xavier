@@ -22,8 +22,7 @@ public class BibliotecaApp {
         BibliotecaApp app = new BibliotecaApp();
         app.populateBooks();
         System.out.println(app.welcomeMessage());
-        int option = app.getMenuOption();
-        app.options(option);
+        app.repeatMenu();
     }
 
     public void options(int option) {
@@ -80,6 +79,10 @@ public class BibliotecaApp {
     }
 
     public void repeatMenu() {
-        menuOptions();
+        int option = getMenuOption();
+        while (option != 0) {
+            options(option);
+            option = getMenuOption();
+        }
     }
 }

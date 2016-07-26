@@ -64,6 +64,8 @@ public class BibliotecaAppTest {
         for (String line : menu) {
             sb.append(line).append("\n");
         }
+        ByteArrayInputStream in = new ByteArrayInputStream("0".getBytes());
+        System.setIn(in);
         app.repeatMenu();
         assertEquals(sb.toString(), out.toString());
     }
