@@ -20,7 +20,7 @@ public class Book {
     }
 
     public void print() {
-        System.out.print(this.toString());
+        System.out.println(this.toString());
     }
 
     @Override

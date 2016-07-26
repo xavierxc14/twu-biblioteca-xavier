@@ -1,11 +1,13 @@
 package com.twu.biblioteca;
 
+import com.twu.biblioteca.util.FileUtil;
 import org.junit.Before;
 import org.junit.Test;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
+import java.util.List;
 
 import static org.junit.Assert.assertEquals;
 
@@ -22,27 +24,47 @@ public class BibliotecaAppTest {
     }
 
     @Test
-    public void welcomeMessageTest() throws Exception {
-        assertEquals("Welcome customer!", app.welcomeMessage());
+    public void welcomeMessage() throws Exception {
+        assertEquals(BibliotecaApp.WELCOME, app.welcomeMessage());
     }
 
     @Test
-    public void listAllBooksTest() throws Exception {
+    public void listAllBooks() throws Exception {
         app.listAllBooks();
-        assertEquals("|Test-driven Development: By Example\t|\tKent Beck\t|\t2003|", out.toString());
+        assertEquals("|Test-driven Development: By Example\t|\tKent Beck\t|\t2003|\n", out.toString());
     }
 
     @Test
-    public void menuOptionsTest() throws Exception {
+    public void menuOptions() throws Exception {
+        List<String> menu = FileUtil.load(BibliotecaApp.MENU_FILE);
+        StringBuilder sb = new StringBuilder();
+        for (String line : menu) {
+            sb.append(line).append("\n");
+        }
         app.menuOptions();
-        assertEquals("1. List Books", out.toString());
+        assertEquals(sb.toString(), out.toString());
     }
 
     @Test
-    public void getMenuOptionTest() throws Exception {
+    public void getMenuOption() throws Exception {
         ByteArrayInputStream in = new ByteArrayInputStream("1".getBytes());
         System.setIn(in);
         assertEquals(1, app.getMenuOption());
+    }
 
+    @Test
+    public void invalidMenuOption() throws Exception {
+        assertEquals(BibliotecaApp.INVALID_OPTION, app.invalidMenuOption());
+    }
+
+    @Test
+    public void repeatMenu() throws Exception {
+        List<String> menu = FileUtil.load(BibliotecaApp.MENU_FILE);
+        StringBuilder sb = new StringBuilder();
+        for (String line : menu) {
+            sb.append(line).append("\n");
+        }
+        app.repeatMenu();
+        assertEquals(sb.toString(), out.toString());
     }
 }
