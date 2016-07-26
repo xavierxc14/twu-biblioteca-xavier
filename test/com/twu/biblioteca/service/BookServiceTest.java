@@ -11,7 +11,7 @@ import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 import java.util.Date;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 public class BookServiceTest {
 
@@ -58,5 +58,14 @@ public class BookServiceTest {
         bookService.getBooks().add(new Book(name));
         assertEquals(scrum, bookService.findBookByName(name));
         assertEquals(null, bookService.findBookByName("other no listed"));
+    }
+
+    @Test
+    public void returnBook() throws Exception {
+        checkoutBook();
+        assertEquals(1, bookService.getBooks().size());
+        Book book = bookService.getBooks().get(0);
+        bookService.returnBook(book);
+        assertEquals(false, book.isCheckedOut());
     }
 }

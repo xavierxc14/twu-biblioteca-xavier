@@ -53,4 +53,10 @@ public class BookService {
     public void setBooks(List<Book> books) {
         this.books = books;
     }
+
+    public void returnBook(Book book) {
+        if (book != null) {
+            book.setCheckedOut(false);
+        }
+    }
 }

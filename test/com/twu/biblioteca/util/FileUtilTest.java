@@ -8,7 +8,7 @@ import java.io.FileWriter;
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 public class FileUtilTest {
     @Test
