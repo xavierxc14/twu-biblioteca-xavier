@@ -39,16 +39,24 @@ public class BibliotecaApp {
                 bookService.listAllBooks();
                 break;
             case 2:
-                System.out.println("Write the book name:");
-                Scanner scanner = new Scanner(System.in);
-                String bookName = scanner.nextLine().trim();
-                Book searched = bookService.findBookByName(bookName);
+                Book searched = obtainBook();
                 bookService.checkoutBook(searched);
+                break;
+            case 3:
+                searched = obtainBook();
+                bookService.returnBook(searched);
                 break;
             default:
                 System.out.println(invalidMenuOption());
                 break;
         }
+    }
+
+    private Book obtainBook() {
+        System.out.println("Write the book name:");
+        Scanner scanner = new Scanner(System.in);
+        String bookName = scanner.nextLine().trim();
+        return bookService.findBookByName(bookName);
     }
 
     public String welcomeMessage() {

@@ -1,5 +1,6 @@
 Menu:
-1. List Books
+1. List books
 2. Checkout a book
+3. Return a book
 0. Quit
 Select an option:
