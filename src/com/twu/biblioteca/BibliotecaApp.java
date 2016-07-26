@@ -29,6 +29,7 @@ public class BibliotecaApp {
         BibliotecaApp app = new BibliotecaApp();
         app.bookService.populateBooks();
         System.out.println(app.welcomeMessage());
+        System.out.println();
         app.repeatMenu();
     }
 
@@ -56,6 +57,7 @@ public class BibliotecaApp {
         System.out.println("Write the book name:");
         Scanner scanner = new Scanner(System.in);
         String bookName = scanner.nextLine().trim();
+        System.out.println();
         return bookService.findBookByName(bookName);
     }
 
@@ -80,7 +82,9 @@ public class BibliotecaApp {
     public int getMenuOption() {
         Scanner scanner = new Scanner(System.in);
         menuOptions();
-        return scanner.nextInt();
+        int option = scanner.nextInt();
+        System.out.println();
+        return option;
     }
 
 
@@ -92,6 +96,7 @@ public class BibliotecaApp {
         int option = getMenuOption();
         while (option != 0) {
             options(option);
+            System.out.println("\n");
             option = getMenuOption();
         }
     }

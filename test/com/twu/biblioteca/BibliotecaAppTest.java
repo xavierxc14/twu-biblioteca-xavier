@@ -19,7 +19,6 @@ public class BibliotecaAppTest {
     @Before
     public void setUp() throws Exception {
         app = new BibliotecaApp();
-//        app.populateBooks();
         System.setOut(new PrintStream(out));
     }
 
@@ -53,7 +52,7 @@ public class BibliotecaAppTest {
         ByteArrayInputStream in = new ByteArrayInputStream("0".getBytes());
         System.setIn(in);
         app.repeatMenu();
-        assertEquals(menu, out.toString());
+        assertEquals(menu + "\n", out.toString());
     }
 
     private String readMenu() {
