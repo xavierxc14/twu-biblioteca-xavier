@@ -14,7 +14,8 @@ public class BibliotecaApp {
 
     public static final String INVALID_OPTION = "Select a valid option!";
     public static final String WELCOME = "Welcome customer!";
-    public static final String CHECKED_OUT_MESSAGE = "Thank you! Enjoy the book";
+    public static final String CHECKOUT_MESSAGE = "Thank you! Enjoy the book";
+    public static final String UNSUCCESSFUL_CHECKOUT_MESSAGE = "That book is not available.";
 
     private static final String PATH = System.getProperty("user.dir") + File.separator +
             "resources" + File.separator;
@@ -36,6 +37,13 @@ public class BibliotecaApp {
             case 1:
                 showTableHeaders();
                 listAllBooks();
+                break;
+            case 2:
+                System.out.println("Write the book name:");
+                Scanner scanner = new Scanner(System.in);
+                String bookName = scanner.nextLine().trim();
+                Book searched = findBookByName(bookName);
+                checkoutBook(searched);
                 break;
             default:
                 System.out.println(invalidMenuOption());
@@ -95,8 +103,12 @@ public class BibliotecaApp {
     }
 
     public void checkoutBook(Book book) {
-        book.setCheckedOut(true);
-        System.out.println(CHECKED_OUT_MESSAGE);
+        if (book == null || book.isCheckedOut()) {
+            System.out.println(UNSUCCESSFUL_CHECKOUT_MESSAGE);
+        } else {
+            book.setCheckedOut(true);
+            System.out.println(CHECKOUT_MESSAGE);
+        }
     }
 
     public List<Book> getBooks() {
@@ -105,5 +117,14 @@ public class BibliotecaApp {
 
     public void setBooks(List<Book> books) {
         this.books = books;
+    }
+
+    public Book findBookByName(String name) {
+        for (Book book : books) {
+            if (name.equals(book.getName())) {
+                return book;
+            }
+        }
+        return null;
     }
 }

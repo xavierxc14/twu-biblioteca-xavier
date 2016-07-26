@@ -1,4 +1,5 @@
 Menu:
 1. List Books
+2. Checkout a book
 0. Quit
 Select an option:

@@ -68,14 +68,6 @@ public class BibliotecaAppTest {
         assertEquals(menu, out.toString());
     }
 
-    @Test
-    public void checkoutBook() throws Exception {
-        Book book = new Book();
-        app.checkoutBook(book);
-        assertEquals(true, book.isCheckedOut());
-        assertEquals(BibliotecaApp.CHECKED_OUT_MESSAGE + "\n", out.toString());
-    }
-
     private String readMenu() {
         List<String> menu = FileUtil.load(BibliotecaApp.MENU_FILE);
         StringBuilder sb = new StringBuilder();
@@ -83,5 +75,31 @@ public class BibliotecaAppTest {
             sb.append(line).append("\n");
         }
         return sb.toString();
+    }
+
+    @Test
+    public void checkoutBook() throws Exception {
+        Book book = new Book();
+        app.checkoutBook(book);
+        assertEquals(true, book.isCheckedOut());
+        assertEquals(BibliotecaApp.CHECKOUT_MESSAGE + "\n", out.toString());
+    }
+
+    @Test
+    public void unsuccessfulCheckout() throws Exception {
+        Book book = new Book();
+        app.checkoutBook(book);
+        out.reset();
+        app.checkoutBook(book);
+        assertEquals(BibliotecaApp.UNSUCCESSFUL_CHECKOUT_MESSAGE + "\n", out.toString());
+    }
+
+    @Test
+    public void findBookByName() throws Exception {
+        Book scrum = new Book("Scrum");
+        String name = "Scrum";
+        app.getBooks().add(new Book(name));
+        assertEquals(scrum, app.findBookByName(name));
+        assertEquals(null, app.findBookByName("other no listed"));
     }
 }

@@ -15,6 +15,10 @@ public class Book {
     public Book() {
     }
 
+    public Book(String name) {
+        this.name = name;
+    }
+
     public Book(String name, Author author, Date publication) {
         this.name = name;
         this.author = author;
@@ -30,6 +34,22 @@ public class Book {
         Calendar calendar = Calendar.getInstance();
         calendar.setTime(publication);
         return String.format("|%s\t|\t%s\t|\t%d|", name, author.getName(), calendar.get(Calendar.YEAR));
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Book book = (Book) o;
+
+        return name != null ? name.equals(book.name) : book.name == null;
+
+    }
+
+    @Override
+    public int hashCode() {
+        return name != null ? name.hashCode() : 0;
     }
 
     public String getName() {
