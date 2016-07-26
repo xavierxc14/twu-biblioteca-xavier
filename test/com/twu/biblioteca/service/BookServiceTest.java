@@ -43,7 +43,7 @@ public class BookServiceTest {
     }
 
     @Test
-    public void unsuccessfulCheckout() throws Exception {
+    public void unsuccessfulCheckoutBook() throws Exception {
         Book book = new Book();
         bookService.checkoutBook(book);
         out.reset();
@@ -62,10 +62,19 @@ public class BookServiceTest {
 
     @Test
     public void returnBook() throws Exception {
-        checkoutBook();
         assertEquals(1, bookService.getBooks().size());
         Book book = bookService.getBooks().get(0);
+        bookService.checkoutBook(book);
+        out.reset();
         bookService.returnBook(book);
         assertEquals(false, book.isCheckedOut());
+        assertEquals(BibliotecaApp.RETURN_MESSAGE + "\n", out.toString());
+    }
+
+    @Test
+    public void unsuccessfulReturnBook() throws Exception {
+        Book book = new Book("An incredible book");
+        bookService.returnBook(book);
+        assertEquals(BibliotecaApp.UNSUCCESSFUL_RETURN_MESSAGE + "\n", out.toString());
     }
 }

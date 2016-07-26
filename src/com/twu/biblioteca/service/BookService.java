@@ -55,8 +55,11 @@ public class BookService {
     }
 
     public void returnBook(Book book) {
-        if (book != null) {
+        if (book != null && book.isCheckedOut()) {
             book.setCheckedOut(false);
+            System.out.println(BibliotecaApp.RETURN_MESSAGE);
+        } else {
+            System.out.println(BibliotecaApp.UNSUCCESSFUL_RETURN_MESSAGE);
         }
     }
 }
