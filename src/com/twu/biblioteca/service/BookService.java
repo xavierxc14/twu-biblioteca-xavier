@@ -46,14 +46,6 @@ public class BookService {
         return null;
     }
 
-    public List<Book> getBooks() {
-        return books;
-    }
-
-    public void setBooks(List<Book> books) {
-        this.books = books;
-    }
-
     public void returnBook(Book book) {
         if (book != null && book.isCheckedOut()) {
             book.setCheckedOut(false);
@@ -61,5 +53,13 @@ public class BookService {
         } else {
             System.out.println(BibliotecaApp.UNSUCCESSFUL_RETURN_MESSAGE);
         }
+    }
+
+    public List<Book> getBooks() {
+        return books;
+    }
+
+    public void setBooks(List<Book> books) {
+        this.books = books;
     }
 }
