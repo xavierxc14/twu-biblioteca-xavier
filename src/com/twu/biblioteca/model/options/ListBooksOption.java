@@ -1,6 +1,7 @@
 package com.twu.biblioteca.model.options;
 
 import com.twu.biblioteca.model.Menu;
+import com.twu.biblioteca.service.BookService;
 
 public class ListBooksOption extends Menu {
 
@@ -11,7 +12,7 @@ public class ListBooksOption extends Menu {
     @Override
     public void executeOption() {
         showTableHeaders();
-        getBookService().listAvailableBooks();
+        BookService.getInstance().listAvailableBooks();
     }
 
     private void showTableHeaders() {

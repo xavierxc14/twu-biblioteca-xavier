@@ -1,5 +1,6 @@
 package com.twu.biblioteca;
 
+import com.twu.biblioteca.service.BookService;
 import com.twu.biblioteca.service.MenuService;
 
 import java.io.File;
@@ -17,6 +18,7 @@ public class BibliotecaApp {
     public static final String MENU_FILE = PATH + "menu.txt";
 
     public static void main(String[] args) {
+        BookService.getInstance().populateBooks();
         MenuService menuService = new MenuService();
         System.out.println(menuService.displayWelcomeMessage());
         System.out.println();

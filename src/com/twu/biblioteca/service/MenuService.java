@@ -14,7 +14,6 @@ public class MenuService {
 
     public MenuService() {
         menuFactory = new MenuFactory();
-        BookService.getInstance().populateBooks();
     }
 
     public String displayWelcomeMessage() {
