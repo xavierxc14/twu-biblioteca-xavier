@@ -57,14 +57,14 @@ public class BookService {
     }
 
     public Book obtainBook() {
-        System.out.println("Write the book name:");
+        System.out.print("Write the book name: ");
         Scanner scanner = new Scanner(System.in);
         String bookName = scanner.nextLine().trim();
         System.out.println();
         return findBookByName(bookName);
     }
 
-    public Book findBookByName(String name) {
+    private Book findBookByName(String name) {
         for (Book book : availableBooks) {
             if (name.equals(book.getName())) {
                 return book;
@@ -86,21 +86,5 @@ public class BookService {
         } else {
             System.out.println(UNSUCCESSFUL_RETURN_MESSAGE);
         }
-    }
-
-    public List<Book> getAvailableBooks() {
-        return availableBooks;
-    }
-
-    public void setAvailableBooks(List<Book> availableBooks) {
-        this.availableBooks = availableBooks;
-    }
-
-    public List<Book> getCheckedOutBooks() {
-        return checkedOutBooks;
-    }
-
-    public void setCheckedOutBooks(List<Book> checkedOutBooks) {
-        this.checkedOutBooks = checkedOutBooks;
     }
 }

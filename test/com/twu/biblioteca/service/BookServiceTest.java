@@ -4,6 +4,7 @@ import com.twu.biblioteca.model.Book;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 
@@ -14,10 +15,13 @@ public class BookServiceTest {
     private final ByteArrayOutputStream out = new ByteArrayOutputStream();
     private BookService bookService;
 
+    private Book tdd;
+
     @Before
     public void setUp() throws Exception {
-        bookService = BookService.getInstance();
         System.setOut(new PrintStream(out));
+        bookService = BookService.getInstance();
+        tdd = new Book("Test-driven Development: By Example", "Kent Beck", "2003");
     }
 
     @Test
@@ -30,9 +34,7 @@ public class BookServiceTest {
 
     @Test
     public void shouldDisplayAMessageOnBookCheckout() throws Exception {
-        Book book = new Book("Test-driven Development: By Example", "", "");
-        bookService.checkoutBook(book);
-        assertEquals(2, bookService.getAvailableBooks().size());
+        bookService.checkoutBook(tdd);
         assertEquals("Thank you! Enjoy the book.\n", out.toString());
     }
 
@@ -45,19 +47,19 @@ public class BookServiceTest {
 
     @Test
     public void shouldFindABookByName() throws Exception {
-        Book scrum = new Book("Scrum", "", "");
-        bookService.getAvailableBooks().add(scrum);
-        assertEquals(scrum, bookService.findBookByName("Scrum"));
-        assertEquals(null, bookService.findBookByName("other no listed"));
+        ByteArrayInputStream in = new ByteArrayInputStream("Test-driven Development: By Example".getBytes());
+        System.setIn(in);
+        assertEquals(tdd, bookService.obtainBook());
+        in = new ByteArrayInputStream("Other/Not listed".getBytes());
+        System.setIn(in);
+        assertEquals(null, bookService.obtainBook());
     }
 
     @Test
     public void shouldDisplayAMessageOnBookReturn() throws Exception {
-        Book book = bookService.getAvailableBooks().get(0);
-        bookService.checkoutBook(book);
-        assertEquals(2, bookService.getCheckedOutBooks().size());
+        bookService.checkoutBook(tdd);
         out.reset();
-        bookService.returnBook(book);
+        bookService.returnBook(tdd);
         assertEquals("Thank you for returning the book.\n", out.toString());
     }
 
