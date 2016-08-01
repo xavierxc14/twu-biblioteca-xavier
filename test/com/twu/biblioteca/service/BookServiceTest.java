@@ -23,19 +23,17 @@ public class BookServiceTest {
     }
 
     @Test
-    public void shouldListAllBooks() throws Exception {
-        Book book = new Book("Scrum", "A smart person", "2016");
-        book.setCheckedOut(true);
-        bookService.getBooks().add(book);
-        bookService.listAllBooks();
-        assertEquals("|               Test-driven Development: By Example|      Kent Beck|                2003|" + "\n", out.toString());
+    public void shouldListAvailableBooks() throws Exception {
+        bookService.listAvailableBooks();
+        assertEquals("|               Test-driven Development: By Example|      Kent Beck|                2003|" + "\n",
+                out.toString());
     }
 
     @Test
     public void shouldCheckoutABook() throws Exception {
-        Book book = new Book("Scrum", "", "");
+        Book book = new Book("Test-driven Development: By Example", "", "");
         bookService.checkoutBook(book);
-        assertEquals(true, book.isCheckedOut());
+        assertEquals(0, bookService.getAvailableBooks().size());
         assertEquals(BibliotecaApp.CHECKOUT_MESSAGE + "\n", out.toString());
     }
 
@@ -43,24 +41,21 @@ public class BookServiceTest {
     public void shouldDisplayUnsuccessfulCheckoutBookMessage() throws Exception {
         Book book = new Book("Scrum", "", "");
         bookService.checkoutBook(book);
-        out.reset();
-        bookService.checkoutBook(book);
         assertEquals(BibliotecaApp.UNSUCCESSFUL_CHECKOUT_MESSAGE + "\n", out.toString());
     }
 
     @Test
     public void shouldFindABookByName() throws Exception {
         Book scrum = new Book("Scrum", "", "");
-        String name = "Scrum";
-        bookService.getBooks().add(new Book(name, "", ""));
-        assertEquals(scrum, bookService.findBookByName(name));
+        bookService.getAvailableBooks().add(scrum);
+        assertEquals(scrum, bookService.findBookByName("Scrum"));
         assertEquals(null, bookService.findBookByName("other no listed"));
     }
 
     @Test
     public void shouldReturnABook() throws Exception {
-        assertEquals(1, bookService.getBooks().size());
-        Book book = bookService.getBooks().get(0);
+        assertEquals(1, bookService.getAvailableBooks().size());
+        Book book = bookService.getAvailableBooks().get(0);
         bookService.checkoutBook(book);
         out.reset();
         bookService.returnBook(book);

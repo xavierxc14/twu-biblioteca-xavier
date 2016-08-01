@@ -37,7 +37,7 @@ public class BibliotecaApp {
         switch (option) {
             case 1:
                 showTableHeaders();
-                bookService.listAllBooks();
+                bookService.listAvailableBooks();
                 break;
             case 2:
                 Book searched = obtainBook();
