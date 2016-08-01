@@ -17,7 +17,7 @@ public class BookServiceTest {
 
     @Before
     public void setUp() throws Exception {
-        bookService = new BookService();
+        bookService = BookService.getInstance();
         bookService.populateBooks();
         System.setOut(new PrintStream(out));
     }
@@ -30,7 +30,7 @@ public class BookServiceTest {
     }
 
     @Test
-    public void shouldCheckoutABook() throws Exception {
+    public void shouldDisplayAMessageOnBookCheckout() throws Exception {
         Book book = new Book("Test-driven Development: By Example", "", "");
         bookService.checkoutBook(book);
         assertEquals(0, bookService.getAvailableBooks().size());
@@ -38,7 +38,7 @@ public class BookServiceTest {
     }
 
     @Test
-    public void shouldDisplayUnsuccessfulCheckoutBookMessage() throws Exception {
+    public void shouldDisplayAMessageOnUnsuccessfulBookCheckout() throws Exception {
         Book book = new Book("Scrum", "", "");
         bookService.checkoutBook(book);
         assertEquals(BibliotecaApp.UNSUCCESSFUL_CHECKOUT_MESSAGE + "\n", out.toString());
@@ -53,18 +53,18 @@ public class BookServiceTest {
     }
 
     @Test
-    public void shouldReturnABook() throws Exception {
+    public void shouldDisplayAMessageOnBookReturn() throws Exception {
         assertEquals(1, bookService.getAvailableBooks().size());
         Book book = bookService.getAvailableBooks().get(0);
         bookService.checkoutBook(book);
+        assertEquals(1, bookService.getCheckedOutBooks().size());
         out.reset();
         bookService.returnBook(book);
-        assertEquals(false, book.isCheckedOut());
         assertEquals(BibliotecaApp.RETURN_MESSAGE + "\n", out.toString());
     }
 
     @Test
-    public void shouldDisplayUnsuccessfulReturnBookMessage() throws Exception {
+    public void shouldDisplayAMessageOnUnsuccessfulBookReturn() throws Exception {
         Book book = new Book("An incredible book", "", "");
         bookService.returnBook(book);
         assertEquals(BibliotecaApp.UNSUCCESSFUL_RETURN_MESSAGE + "\n", out.toString());

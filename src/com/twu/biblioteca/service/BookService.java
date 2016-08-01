@@ -5,11 +5,24 @@ import com.twu.biblioteca.model.Book;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 
 public class BookService {
 
+    private static BookService instance;
+
     private List<Book> availableBooks;
     private List<Book> checkedOutBooks;
+
+    private BookService() {
+    }
+
+    public static BookService getInstance() {
+        if (instance == null) {
+            instance = new BookService();
+        }
+        return instance;
+    }
 
     public void listAvailableBooks() {
         for (Book b : availableBooks) {
@@ -18,9 +31,9 @@ public class BookService {
     }
 
     public void populateBooks() {
-        Book book = new Book("Test-driven Development: By Example", "Kent Beck", "2003");
         availableBooks = new ArrayList<Book>();
         checkedOutBooks = new ArrayList<Book>();
+        Book book = new Book("Test-driven Development: By Example", "Kent Beck", "2003");
         availableBooks.add(book);
     }
 
@@ -32,6 +45,14 @@ public class BookService {
             checkedOutBooks.add(book);
             System.out.println(BibliotecaApp.CHECKOUT_MESSAGE);
         }
+    }
+
+    public Book obtainBook() {
+        System.out.println("Write the book name:");
+        Scanner scanner = new Scanner(System.in);
+        String bookName = scanner.nextLine().trim();
+        System.out.println();
+        return findBookByName(bookName);
     }
 
     public Book findBookByName(String name) {
