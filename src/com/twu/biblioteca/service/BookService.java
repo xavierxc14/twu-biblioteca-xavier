@@ -1,11 +1,9 @@
 package com.twu.biblioteca.service;
 
 import com.twu.biblioteca.BibliotecaApp;
-import com.twu.biblioteca.model.Author;
 import com.twu.biblioteca.model.Book;
 
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.List;
 
 public class BookService {
@@ -21,9 +19,7 @@ public class BookService {
     }
 
     public void populateBooks() {
-        Calendar calendar = Calendar.getInstance();
-        calendar.set(Calendar.YEAR, 2003);
-        Book book = new Book("Test-driven Development: By Example", new Author("Kent Beck"), calendar.getTime());
+        Book book = new Book("Test-driven Development: By Example", "Kent Beck", "2003");
         books = new ArrayList<Book>();
         books.add(book);
     }

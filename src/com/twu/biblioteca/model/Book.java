@@ -1,14 +1,11 @@
 package com.twu.biblioteca.model;
 
-import java.util.Calendar;
-import java.util.Date;
-
 public class Book {
     private String name;
 
-    private Author author;
+    private String author;
 
-    private Date publication;
+    private String yearOfPublication;
 
     private boolean checkedOut;
 
@@ -19,10 +16,10 @@ public class Book {
         this.name = name;
     }
 
-    public Book(String name, Author author, Date publication) {
+    public Book(String name, String author, String yearOfPublication) {
         this.name = name;
         this.author = author;
-        this.publication = publication;
+        this.yearOfPublication = yearOfPublication;
     }
 
     public void print() {
@@ -31,9 +28,7 @@ public class Book {
 
     @Override
     public String toString() {
-        Calendar calendar = Calendar.getInstance();
-        calendar.setTime(publication);
-        return String.format("|%s\t|\t%s\t|\t%d|", name, author.getName(), calendar.get(Calendar.YEAR));
+        return String.format("|%50s|%15s|%20s|", getName(), getAuthor(), getYearOfPublication());
     }
 
     @Override
@@ -60,20 +55,20 @@ public class Book {
         this.name = name;
     }
 
-    public Author getAuthor() {
+    public String getAuthor() {
         return author;
     }
 
-    public void setAuthor(Author author) {
+    public void setAuthor(String author) {
         this.author = author;
     }
 
-    public Date getPublication() {
-        return publication;
+    public String getYearOfPublication() {
+        return yearOfPublication;
     }
 
-    public void setPublication(Date publication) {
-        this.publication = publication;
+    public void setYearOfPublication(String yearOfPublication) {
+        this.yearOfPublication = yearOfPublication;
     }
 
     public boolean isCheckedOut() {

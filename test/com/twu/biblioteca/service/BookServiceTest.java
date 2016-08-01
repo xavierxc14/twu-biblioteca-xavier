@@ -1,15 +1,12 @@
 package com.twu.biblioteca.service;
 
 import com.twu.biblioteca.BibliotecaApp;
-import com.twu.biblioteca.model.Author;
 import com.twu.biblioteca.model.Book;
-import com.twu.biblioteca.util.FileUtil;
 import org.junit.Before;
 import org.junit.Test;
 
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
-import java.util.Date;
 
 import static org.junit.Assert.assertEquals;
 
@@ -27,11 +24,11 @@ public class BookServiceTest {
 
     @Test
     public void listAllBooks() throws Exception {
-        Book book = new Book("Scrum", new Author("A smart person"), new Date());
+        Book book = new Book("Scrum", "A smart person", "2016");
         book.setCheckedOut(true);
         bookService.getBooks().add(book);
         bookService.listAllBooks();
-        assertEquals(FileUtil.load(BibliotecaApp.BOOK_FILE).get(0) + "\n", out.toString());
+        assertEquals("|               Test-driven Development: By Example|      Kent Beck|                2003|" + "\n", out.toString());
     }
 
     @Test

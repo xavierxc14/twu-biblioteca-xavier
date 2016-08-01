@@ -82,7 +82,12 @@ public class BibliotecaApp {
     public int getMenuOption() {
         Scanner scanner = new Scanner(System.in);
         menuOptions();
-        int option = scanner.nextInt();
+        int option = 100;
+        try {
+            option = Integer.parseInt(scanner.next());
+        } catch (NumberFormatException e) {
+            System.out.println("Only numbers are allowed");
+        }
         System.out.println();
         return option;
     }
