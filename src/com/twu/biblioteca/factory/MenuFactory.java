@@ -12,10 +12,10 @@ public class MenuFactory {
     private static final InvalidOption INVALID_OPTION = new InvalidOption("");
 
     public MenuFactory() {
-        menuOptions.put(1, new ListBooksOption("1. List books"));
-        menuOptions.put(2, new CheckoutBookOption("2. Checkout a book"));
-        menuOptions.put(3, new ReturnBookOption("3. Return a book"));
-        menuOptions.put(0, new QuitOption("0. Quit"));
+        menuOptions.put(1, new ListBooks("1. List books"));
+        menuOptions.put(2, new CheckoutBook("2. Checkout a book"));
+        menuOptions.put(3, new ReturnBook("3. Return a book"));
+        menuOptions.put(0, new Quit("0. Quit"));
     }
 
     public static Map<Integer, Menu> getMenuOptions() {

@@ -4,9 +4,9 @@ import com.twu.biblioteca.model.Book;
 import com.twu.biblioteca.model.Menu;
 import com.twu.biblioteca.service.BookService;
 
-public class ReturnBookOption extends Menu {
+public class CheckoutBook extends Menu {
 
-    public ReturnBookOption(String name) {
+    public CheckoutBook(String name) {
         super(name);
     }
 
@@ -14,6 +14,6 @@ public class ReturnBookOption extends Menu {
     public void executeOption() {
         BookService bookService = BookService.getInstance();
         Book searched = bookService.obtainBook();
-        bookService.returnBook(searched);
+        bookService.checkoutBook(searched);
     }
 }

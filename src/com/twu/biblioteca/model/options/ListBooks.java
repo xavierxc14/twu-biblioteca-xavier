@@ -3,9 +3,9 @@ package com.twu.biblioteca.model.options;
 import com.twu.biblioteca.model.Menu;
 import com.twu.biblioteca.service.BookService;
 
-public class ListBooksOption extends Menu {
+public class ListBooks extends Menu {
 
-    public ListBooksOption(String name) {
+    public ListBooks(String name) {
         super(name);
     }
 
