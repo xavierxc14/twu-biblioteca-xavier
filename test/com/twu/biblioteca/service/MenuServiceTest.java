@@ -33,21 +33,7 @@ public class MenuServiceTest {
     }
 
     @Test
-    public void shouldDisplayMenuOptions() throws Exception {
-        menuService.displayMenuOptions();
-        assertEquals(menu, out.toString());
-    }
-
-    @Test
-    public void shouldReturnMenuOption() throws Exception {
-        ByteArrayInputStream in = new ByteArrayInputStream("1".getBytes());
-        System.setIn(in);
-        assertEquals(1, menuService.getMenuOption());
-
-    }
-
-    @Test
-    public void displayMenuUntilQuit() throws Exception {
+    public void shouldDisplayMenuUntilQuit() throws Exception {
         ByteArrayInputStream in = new ByteArrayInputStream("0".getBytes());
         System.setIn(in);
         menuService.displayMenuUntilQuit();

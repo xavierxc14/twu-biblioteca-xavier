@@ -20,7 +20,7 @@ public class MenuService {
         return WELCOME;
     }
 
-    public void displayMenuOptions() {
+    private void displayMenuOptions() {
         Collection<Menu> menus = MenuFactory.getMenuOptions().values();
         System.out.println("Menu:");
         for (Menu menu : menus) {
@@ -29,7 +29,7 @@ public class MenuService {
         System.out.print("Select an option: ");
     }
 
-    public int getMenuOption() {
+    private int getMenuOption() {
         Scanner scanner = new Scanner(System.in);
         displayMenuOptions();
         int option = Integer.MAX_VALUE;
