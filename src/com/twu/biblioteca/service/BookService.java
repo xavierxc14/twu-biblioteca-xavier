@@ -1,6 +1,5 @@
 package com.twu.biblioteca.service;
 
-import com.twu.biblioteca.BibliotecaApp;
 import com.twu.biblioteca.model.Book;
 
 import java.util.ArrayList;
@@ -8,6 +7,11 @@ import java.util.List;
 import java.util.Scanner;
 
 public class BookService {
+
+    private static final String CHECKOUT_MESSAGE = "Thank you! Enjoy the book.";
+    private static final String UNSUCCESSFUL_CHECKOUT_MESSAGE = "That book is not available.";
+    private static final String RETURN_MESSAGE = "Thank you for returning the book.";
+    private static final String UNSUCCESSFUL_RETURN_MESSAGE = "That is not a valid book to return.";
 
     private static BookService instance;
 
@@ -39,11 +43,11 @@ public class BookService {
 
     public void checkoutBook(Book book) {
         if (book == null || !availableBooks.contains(book)) {
-            System.out.println(BibliotecaApp.UNSUCCESSFUL_CHECKOUT_MESSAGE);
+            System.out.println(UNSUCCESSFUL_CHECKOUT_MESSAGE);
         } else {
             availableBooks.remove(book);
             checkedOutBooks.add(book);
-            System.out.println(BibliotecaApp.CHECKOUT_MESSAGE);
+            System.out.println(CHECKOUT_MESSAGE);
         }
     }
 
@@ -68,9 +72,9 @@ public class BookService {
         if (book != null && checkedOutBooks.contains(book)) {
             checkedOutBooks.remove(book);
             availableBooks.add(book);
-            System.out.println(BibliotecaApp.RETURN_MESSAGE);
+            System.out.println(RETURN_MESSAGE);
         } else {
-            System.out.println(BibliotecaApp.UNSUCCESSFUL_RETURN_MESSAGE);
+            System.out.println(UNSUCCESSFUL_RETURN_MESSAGE);
         }
     }
 

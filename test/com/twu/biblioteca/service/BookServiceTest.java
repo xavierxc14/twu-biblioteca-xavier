@@ -1,6 +1,5 @@
 package com.twu.biblioteca.service;
 
-import com.twu.biblioteca.BibliotecaApp;
 import com.twu.biblioteca.model.Book;
 import org.junit.Before;
 import org.junit.Test;
@@ -34,14 +33,14 @@ public class BookServiceTest {
         Book book = new Book("Test-driven Development: By Example", "", "");
         bookService.checkoutBook(book);
         assertEquals(0, bookService.getAvailableBooks().size());
-        assertEquals(BibliotecaApp.CHECKOUT_MESSAGE + "\n", out.toString());
+        assertEquals("Thank you! Enjoy the book.\n", out.toString());
     }
 
     @Test
     public void shouldDisplayAMessageOnUnsuccessfulBookCheckout() throws Exception {
         Book book = new Book("Scrum", "", "");
         bookService.checkoutBook(book);
-        assertEquals(BibliotecaApp.UNSUCCESSFUL_CHECKOUT_MESSAGE + "\n", out.toString());
+        assertEquals("That book is not available.\n", out.toString());
     }
 
     @Test
@@ -60,13 +59,13 @@ public class BookServiceTest {
         assertEquals(1, bookService.getCheckedOutBooks().size());
         out.reset();
         bookService.returnBook(book);
-        assertEquals(BibliotecaApp.RETURN_MESSAGE + "\n", out.toString());
+        assertEquals("Thank you for returning the book.\n", out.toString());
     }
 
     @Test
     public void shouldDisplayAMessageOnUnsuccessfulBookReturn() throws Exception {
         Book book = new Book("An incredible book", "", "");
         bookService.returnBook(book);
-        assertEquals(BibliotecaApp.UNSUCCESSFUL_RETURN_MESSAGE + "\n", out.toString());
+        assertEquals("That is not a valid book to return.\n", out.toString());
     }
 }
