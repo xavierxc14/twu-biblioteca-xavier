@@ -9,13 +9,6 @@ public class Book {
 
     private boolean checkedOut;
 
-    public Book() {
-    }
-
-    public Book(String name) {
-        this.name = name;
-    }
-
     public Book(String name, String author, String yearOfPublication) {
         this.name = name;
         this.author = author;
