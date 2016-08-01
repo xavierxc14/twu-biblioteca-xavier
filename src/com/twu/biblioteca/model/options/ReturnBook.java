@@ -6,8 +6,8 @@ import com.twu.biblioteca.service.BookService;
 
 public class ReturnBook extends Menu {
 
-    public ReturnBook(String name) {
-        super(name);
+    public ReturnBook() {
+        super("3. Return a book");
     }
 
     @Override

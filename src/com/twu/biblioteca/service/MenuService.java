@@ -10,7 +10,7 @@ public class MenuService {
 
     private static final String WELCOME = "Welcome customer!";
 
-    private MenuFactory menuFactory;
+    private final MenuFactory menuFactory;
 
     public MenuService() {
         menuFactory = new MenuFactory();

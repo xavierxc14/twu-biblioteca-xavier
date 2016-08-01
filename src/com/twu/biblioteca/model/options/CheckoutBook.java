@@ -6,8 +6,8 @@ import com.twu.biblioteca.service.BookService;
 
 public class CheckoutBook extends Menu {
 
-    public CheckoutBook(String name) {
-        super(name);
+    public CheckoutBook() {
+        super("2. Checkout a book");
     }
 
     @Override

@@ -5,8 +5,8 @@ import com.twu.biblioteca.service.BookService;
 
 public class ListBooks extends Menu {
 
-    public ListBooks(String name) {
-        super(name);
+    public ListBooks() {
+        super("1. List books");
     }
 
     @Override

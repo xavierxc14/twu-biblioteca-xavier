@@ -4,8 +4,8 @@ import com.twu.biblioteca.model.Menu;
 
 public class Quit extends Menu {
 
-    public Quit(String name) {
-        super(name);
+    public Quit() {
+        super("0. Quit");
     }
 
     @Override

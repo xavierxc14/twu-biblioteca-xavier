@@ -6,8 +6,8 @@ public class InvalidOption extends Menu {
 
     private static final String INVALID_OPTION = "Select a valid option!";
 
-    public InvalidOption(String name) {
-        super(name);
+    public InvalidOption() {
+        super("");
     }
 
     @Override
