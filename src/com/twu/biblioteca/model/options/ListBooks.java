@@ -16,8 +16,8 @@ public class ListBooks extends Menu {
     }
 
     private void showTableHeaders() {
-        System.out.println("_________________________________________________________________________________________");
-        System.out.println(String.format("|%50s|%15s|%20s|", "Book title", "Author", "Year of publication"));
-        System.out.println("|=======================================================================================|");
+        System.out.println("______________________________________________________________________________________________");
+        System.out.println(String.format("|%50s|%20s|%20s|", "Book title", "Author", "Year of publication"));
+        System.out.println("|============================================================================================|");
     }
 }

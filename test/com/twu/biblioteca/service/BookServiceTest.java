@@ -17,14 +17,14 @@ public class BookServiceTest {
     @Before
     public void setUp() throws Exception {
         bookService = BookService.getInstance();
-        bookService.populateBooks();
         System.setOut(new PrintStream(out));
     }
 
     @Test
     public void shouldListAvailableBooks() throws Exception {
         bookService.listAvailableBooks();
-        assertEquals("|               Test-driven Development: By Example|      Kent Beck|                2003|" + "\n",
+        assertEquals("|                                   Essential Scrum|    Kenneth S. Rubin|                2013|\n" +
+                        "|               Test-driven Development: By Example|           Kent Beck|                2003|\n",
                 out.toString());
     }
 
@@ -32,7 +32,7 @@ public class BookServiceTest {
     public void shouldDisplayAMessageOnBookCheckout() throws Exception {
         Book book = new Book("Test-driven Development: By Example", "", "");
         bookService.checkoutBook(book);
-        assertEquals(0, bookService.getAvailableBooks().size());
+        assertEquals(2, bookService.getAvailableBooks().size());
         assertEquals("Thank you! Enjoy the book.\n", out.toString());
     }
 
@@ -53,10 +53,9 @@ public class BookServiceTest {
 
     @Test
     public void shouldDisplayAMessageOnBookReturn() throws Exception {
-        assertEquals(1, bookService.getAvailableBooks().size());
         Book book = bookService.getAvailableBooks().get(0);
         bookService.checkoutBook(book);
-        assertEquals(1, bookService.getCheckedOutBooks().size());
+        assertEquals(2, bookService.getCheckedOutBooks().size());
         out.reset();
         bookService.returnBook(book);
         assertEquals("Thank you for returning the book.\n", out.toString());

@@ -21,7 +21,7 @@ public class Book {
 
     @Override
     public String toString() {
-        return String.format("|%50s|%15s|%20s|", getName(), getAuthor(), getYearOfPublication());
+        return String.format("|%50s|%20s|%20s|", getName(), getAuthor(), getYearOfPublication());
     }
 
     @Override

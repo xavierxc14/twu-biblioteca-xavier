@@ -19,6 +19,7 @@ public class BookService {
     private List<Book> checkedOutBooks;
 
     private BookService() {
+        populateBooks();
     }
 
     public static BookService getInstance() {
@@ -34,11 +35,15 @@ public class BookService {
         }
     }
 
-    public void populateBooks() {
+    private void populateBooks() {
         availableBooks = new ArrayList<Book>();
         checkedOutBooks = new ArrayList<Book>();
-        Book book = new Book("Test-driven Development: By Example", "Kent Beck", "2003");
-        availableBooks.add(book);
+        Book scrum = new Book("Essential Scrum", "Kenneth S. Rubin", "2013");
+        Book tdd = new Book("Test-driven Development: By Example", "Kent Beck", "2003");
+        Book xp = new Book("Extreme Programming Explained: Embrace Change", "Kent Beck", "2009");
+        availableBooks.add(tdd);
+        availableBooks.add(scrum);
+        checkedOutBooks.add(xp);
     }
 
     public void checkoutBook(Book book) {
@@ -61,6 +66,11 @@ public class BookService {
 
     public Book findBookByName(String name) {
         for (Book book : availableBooks) {
+            if (name.equals(book.getName())) {
+                return book;
+            }
+        }
+        for (Book book : checkedOutBooks) {
             if (name.equals(book.getName())) {
                 return book;
             }
