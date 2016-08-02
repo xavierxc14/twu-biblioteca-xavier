@@ -9,6 +9,7 @@ import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNull;
 
 public class BookServiceTest {
 
@@ -52,7 +53,7 @@ public class BookServiceTest {
         assertEquals(tdd, bookService.obtainBook());
         in = new ByteArrayInputStream("Other/Not listed".getBytes());
         System.setIn(in);
-        assertEquals(null, bookService.obtainBook());
+        assertNull(bookService.obtainBook());
     }
 
     @Test

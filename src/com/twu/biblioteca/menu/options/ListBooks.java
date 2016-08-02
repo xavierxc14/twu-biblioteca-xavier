@@ -1,6 +1,6 @@
-package com.twu.biblioteca.model.options;
+package com.twu.biblioteca.menu.options;
 
-import com.twu.biblioteca.model.Menu;
+import com.twu.biblioteca.menu.Menu;
 import com.twu.biblioteca.service.BookService;
 
 public class ListBooks extends Menu {

@@ -1,7 +1,7 @@
 package com.twu.biblioteca.service;
 
 import com.twu.biblioteca.factory.MenuFactory;
-import com.twu.biblioteca.model.Menu;
+import com.twu.biblioteca.menu.Menu;
 
 import java.util.Collection;
 import java.util.Scanner;
@@ -32,23 +32,22 @@ public class MenuService {
     private int getMenuOption() {
         Scanner scanner = new Scanner(System.in);
         displayMenuOptions();
-        int option = Integer.MAX_VALUE;
+        int option;
         try {
             option = Integer.parseInt(scanner.next());
         } catch (NumberFormatException e) {
-            System.out.println("Only numbers are allowed");
+            System.out.println("Only numbers are allowed!");
+            option = Integer.MAX_VALUE;
         }
         System.out.println();
         return option;
     }
 
-    public void displayMenuUntilQuit() {
+    public int displayMenu() {
         int option = getMenuOption();
-        while (option != 0) {
-            Menu menuOption = menuFactory.getMenuOption(option);
-            menuOption.executeOption();
-            System.out.println("\n");
-            option = getMenuOption();
-        }
+        Menu menuOption = menuFactory.getMenuOption(option);
+        menuOption.executeOption();
+        System.out.println("\n");
+        return option;
     }
 }

@@ -21,7 +21,7 @@ public class MovieServiceTest {
     public void shouldListAvailableMovies() throws Exception {
         MovieService movieService = new MovieService();
         movieService.listAvailableMovies();
-        assertEquals("|              The Hunger Games|           Gary Ross|                2012|         7|\n",
+        assertEquals("|              The Hunger Games|           Gary Ross|      2012|         7|\n",
                 out.toString());
     }
 

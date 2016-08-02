@@ -8,6 +8,7 @@ import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 public class MenuServiceTest {
 
@@ -24,6 +25,7 @@ public class MenuServiceTest {
                 "1. List books\n" +
                 "2. Checkout a book\n" +
                 "3. Return a book\n" +
+                "4. List movies\n" +
                 "Select an option: ";
     }
 
@@ -33,10 +35,19 @@ public class MenuServiceTest {
     }
 
     @Test
-    public void shouldDisplayMenuUntilQuit() throws Exception {
+    public void shouldDisplayMenuAndQuit() throws Exception {
         ByteArrayInputStream in = new ByteArrayInputStream("0".getBytes());
         System.setIn(in);
-        menuService.displayMenuUntilQuit();
-        assertEquals(menu + "\n", out.toString());
+        menuService.displayMenu();
+        assertEquals(menu + "\n\n\n", out.toString());
+    }
+
+    @Test
+    public void shouldAceptOnlyNumbers() throws Exception {
+        ByteArrayInputStream in = new ByteArrayInputStream("dfd#@".getBytes());
+        System.setIn(in);
+        int option = menuService.displayMenu();
+        assertTrue(out.toString().contains("Only numbers are allowed!"));
+        assertEquals(Integer.MAX_VALUE, option);
     }
 }

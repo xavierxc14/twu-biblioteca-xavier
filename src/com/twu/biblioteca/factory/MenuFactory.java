@@ -1,7 +1,7 @@
 package com.twu.biblioteca.factory;
 
-import com.twu.biblioteca.model.Menu;
-import com.twu.biblioteca.model.options.*;
+import com.twu.biblioteca.menu.Menu;
+import com.twu.biblioteca.menu.options.*;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -15,6 +15,7 @@ public class MenuFactory {
         menuOptions.put(1, new ListBooks());
         menuOptions.put(2, new CheckoutBook());
         menuOptions.put(3, new ReturnBook());
+        menuOptions.put(4, new ListMovies());
         menuOptions.put(0, new Quit());
     }
 

@@ -22,7 +22,7 @@ public class Movie {
 
     @Override
     public String toString() {
-        return String.format("|%30s|%20s|%20s|%10s|", getName(), getDirector(), getYear(), getRating());
+        return String.format("|%30s|%20s|%10s|%10s|", getName(), getDirector(), getYear(), getRating());
     }
 
     @Override
