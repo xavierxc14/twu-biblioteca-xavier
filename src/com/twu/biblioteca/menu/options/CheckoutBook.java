@@ -12,6 +12,7 @@ public class CheckoutBook extends Menu {
 
     @Override
     public void executeOption() {
+
         BookService bookService = BookService.getInstance();
         Book searched = bookService.obtainBook();
         bookService.checkoutBook(searched);

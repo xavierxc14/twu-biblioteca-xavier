@@ -7,6 +7,8 @@ public class Book {
 
     private String yearOfPublication;
 
+    private User userCheckedOut;
+
     public Book(String name, String author, String yearOfPublication) {
         this.name = name;
         this.author = author;
@@ -60,5 +62,13 @@ public class Book {
 
     public void setYearOfPublication(String yearOfPublication) {
         this.yearOfPublication = yearOfPublication;
+    }
+
+    public User getUserCheckedOut() {
+        return userCheckedOut;
+    }
+
+    public void setUserCheckedOut(User userCheckedOut) {
+        this.userCheckedOut = userCheckedOut;
     }
 }

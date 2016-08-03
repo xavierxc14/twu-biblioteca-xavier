@@ -7,7 +7,6 @@ import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
 
 public class BookTest {
 
@@ -34,15 +33,8 @@ public class BookTest {
     }
 
     @Test
-    public void shouldBeDifferentBooks() throws Exception {
-        Book b = new Book("Test", "", "");
-        assertFalse(b.equals(book));
-
+    public void shouldReturnUserWhoHasCheckedOutTheMovie() throws Exception {
+        book.setUserCheckedOut(new User("Xavier", "", ""));
+        assertEquals(new User("Xavier", "", ""), book.getUserCheckedOut());
     }
-
-    @Test
-    public void shouldReturnNameHashCode() throws Exception {
-        assertEquals(book.getName().hashCode(), book.hashCode());
-    }
-
 }
