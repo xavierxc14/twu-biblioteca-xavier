@@ -8,13 +8,31 @@ import java.util.List;
 public class MovieService {
 
     private List<Movie> availableMovies;
+    private List<Movie> checkedOutMovies;
+
+    public MovieService() {
+        populateMovies();
+    }
 
     public void listAvailableMovies() {
-        availableMovies = new ArrayList<Movie>();
-        Movie movie = new Movie("The Hunger Games", "2012", "Gary Ross", 7);
-        availableMovies.add(movie);
         for (Movie m : availableMovies) {
             m.print();
         }
+    }
+
+    private void populateMovies() {
+        availableMovies = new ArrayList<Movie>();
+        checkedOutMovies = new ArrayList<Movie>();
+        Movie movie = new Movie("The Hunger Games", "2012", "Gary Ross", 7);
+        availableMovies.add(movie);
+    }
+
+    public boolean checkoutMovie(Movie movie) {
+        if (availableMovies.contains(movie)) {
+            availableMovies.remove(movie);
+            checkedOutMovies.add(movie);
+            return true;
+        }
+        return false;
     }
 }
