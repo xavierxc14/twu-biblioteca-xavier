@@ -19,6 +19,7 @@ public class MovieServiceTest {
     @Before
     public void setUp() throws Exception {
         System.setOut(new PrintStream(out));
+        MovieService.populateMovies();
         movieService = new MovieService();
     }
 

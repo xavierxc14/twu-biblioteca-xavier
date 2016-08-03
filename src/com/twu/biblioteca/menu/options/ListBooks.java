@@ -12,7 +12,7 @@ public class ListBooks extends Menu {
     @Override
     public void executeOption() {
         showTableHeaders();
-        BookService.getInstance().listAvailableBooks();
+        new BookService().listAvailableBooks();
     }
 
     private void showTableHeaders() {

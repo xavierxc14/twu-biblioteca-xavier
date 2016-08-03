@@ -34,7 +34,7 @@ public class BookTest {
 
     @Test
     public void shouldReturnUserWhoHasCheckedOutTheMovie() throws Exception {
-        book.setUserCheckedOut(new User("Xavier", "", ""));
-        assertEquals(new User("Xavier", "", ""), book.getUserCheckedOut());
+        book.setUserCheckedOut(new User("Xavier", "", "", "", ""));
+        assertEquals(new User("Xavier", "", "", "", ""), book.getUserCheckedOut());
     }
 }

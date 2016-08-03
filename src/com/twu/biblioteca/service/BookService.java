@@ -13,29 +13,10 @@ public class BookService {
     private static final String RETURN_MESSAGE = "Thank you for returning the book.";
     private static final String UNSUCCESSFUL_RETURN_MESSAGE = "That is not a valid book to return.";
 
-    private static BookService instance;
+    private static List<Book> availableBooks;
+    private static List<Book> checkedOutBooks;
 
-    private List<Book> availableBooks;
-    private List<Book> checkedOutBooks;
-
-    private BookService() {
-        populateBooks();
-    }
-
-    public static BookService getInstance() {
-        if (instance == null) {
-            instance = new BookService();
-        }
-        return instance;
-    }
-
-    public void listAvailableBooks() {
-        for (Book b : availableBooks) {
-            b.print();
-        }
-    }
-
-    private void populateBooks() {
+    public static void populateBooks() {
         availableBooks = new ArrayList<Book>();
         checkedOutBooks = new ArrayList<Book>();
         Book scrum = new Book("Essential Scrum", "Kenneth S. Rubin", "2013");
@@ -44,6 +25,12 @@ public class BookService {
         availableBooks.add(tdd);
         availableBooks.add(scrum);
         checkedOutBooks.add(xp);
+    }
+
+    public void listAvailableBooks() {
+        for (Book b : availableBooks) {
+            b.print();
+        }
     }
 
     public void checkoutBook(Book book) {

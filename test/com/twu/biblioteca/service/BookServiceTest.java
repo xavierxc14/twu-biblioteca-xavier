@@ -21,15 +21,16 @@ public class BookServiceTest {
     @Before
     public void setUp() throws Exception {
         System.setOut(new PrintStream(out));
-        bookService = BookService.getInstance();
+        BookService.populateBooks();
+        bookService = new BookService();
         tdd = new Book("Test-driven Development: By Example", "Kent Beck", "2003");
     }
 
     @Test
     public void shouldListAvailableBooks() throws Exception {
         bookService.listAvailableBooks();
-        assertEquals("|                                   Essential Scrum|    Kenneth S. Rubin|                2013|\n" +
-                        "|               Test-driven Development: By Example|           Kent Beck|                2003|\n",
+        assertEquals("|               Test-driven Development: By Example|           Kent Beck|                2003|\n" +
+                        "|                                   Essential Scrum|    Kenneth S. Rubin|                2013|\n",
                 out.toString());
     }
 

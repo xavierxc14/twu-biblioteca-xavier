@@ -8,24 +8,20 @@ import java.util.List;
 
 public class MovieService {
 
-    private List<Movie> availableMovies;
-    private List<Movie> checkedOutMovies;
+    private static List<Movie> availableMovies;
+    private static List<Movie> checkedOutMovies;
 
-    public MovieService() {
-        populateMovies();
+    public static void populateMovies() {
+        availableMovies = new ArrayList<Movie>();
+        checkedOutMovies = new ArrayList<Movie>();
+        Movie movie = new Movie("The Hunger Games", "2012", "Gary Ross", 7);
+        availableMovies.add(movie);
     }
 
     public void listAvailableMovies() {
         for (Movie m : availableMovies) {
             m.print();
         }
-    }
-
-    private void populateMovies() {
-        availableMovies = new ArrayList<Movie>();
-        checkedOutMovies = new ArrayList<Movie>();
-        Movie movie = new Movie("The Hunger Games", "2012", "Gary Ross", 7);
-        availableMovies.add(movie);
     }
 
     public Movie checkoutMovie(Movie movie) {
@@ -44,7 +40,7 @@ public class MovieService {
 
     private Movie findBookByName(String name, List<Movie> movies) {
         for (Movie movie : movies) {
-            if (name.equals(movie.getName())) {
+            if (movie.getName().equals(name)) {
                 return movie;
             }
         }
