@@ -4,10 +4,12 @@ import com.twu.biblioteca.model.Movie;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNull;
 
 public class MovieServiceTest {
 
@@ -28,12 +30,24 @@ public class MovieServiceTest {
     }
 
     @Test
-    public void shouldReturnFalseOnMovieCheckout() throws Exception {
-        assertFalse(movieService.checkoutMovie(new Movie("Test", "", "", 0)));
+    public void shouldReturnTheMovieCheckedOut() throws Exception {
+        Movie theHungerGames = new Movie("The Hunger Games", "2012", "Gary Ross", 7);
+        assertEquals(theHungerGames, movieService.checkoutMovie(theHungerGames));
     }
 
     @Test
-    public void shouldReturnTrueOnMovieCheckout() throws Exception {
-        assertTrue(movieService.checkoutMovie(new Movie("The Hunger Games", "2012", "Gary Ross", 7)));
+    public void shouldReturnNullWhenMovieWasNotCheckedOut() throws Exception {
+        assertNull(movieService.checkoutMovie(new Movie("Test", "", "", 0)));
+    }
+
+    @Test
+    public void shouldFindAMovieByName() throws Exception {
+        Movie theHungerGames = new Movie("The Hunger Games", "2012", "Gary Ross", 7);
+        ByteArrayInputStream in = new ByteArrayInputStream("The Hunger Games".getBytes());
+        System.setIn(in);
+        assertEquals(theHungerGames, movieService.obtainMovie());
+        in = new ByteArrayInputStream("Other/Not listed".getBytes());
+        System.setIn(in);
+        assertNull(movieService.obtainMovie());
     }
 }

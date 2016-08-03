@@ -16,6 +16,7 @@ public class MenuFactory {
         menuOptions.put(2, new CheckoutBook());
         menuOptions.put(3, new ReturnBook());
         menuOptions.put(4, new ListMovies());
+        menuOptions.put(5, new CheckoutMovie());
         menuOptions.put(0, new Quit());
     }
 

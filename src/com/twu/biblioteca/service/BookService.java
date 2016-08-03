@@ -1,10 +1,10 @@
 package com.twu.biblioteca.service;
 
 import com.twu.biblioteca.model.Book;
+import com.twu.biblioteca.util.UserInput;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Scanner;
 
 public class BookService {
 
@@ -57,20 +57,14 @@ public class BookService {
     }
 
     public Book obtainBook() {
-        System.out.print("Write the book name: ");
-        Scanner scanner = new Scanner(System.in);
-        String bookName = scanner.nextLine().trim();
-        System.out.println();
-        return findBookByName(bookName);
+        String bookName = UserInput.obtainInput("Write the book name: ");
+        Book book = findBookByName(bookName, availableBooks);
+        book = book != null ? book : findBookByName(bookName, checkedOutBooks);
+        return book;
     }
 
-    private Book findBookByName(String name) {
-        for (Book book : availableBooks) {
-            if (name.equals(book.getName())) {
-                return book;
-            }
-        }
-        for (Book book : checkedOutBooks) {
+    private Book findBookByName(String name, List<Book> books) {
+        for (Book book : books) {
             if (name.equals(book.getName())) {
                 return book;
             }

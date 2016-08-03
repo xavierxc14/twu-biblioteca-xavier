@@ -26,6 +26,7 @@ public class MenuServiceTest {
                 "2. Checkout a book\n" +
                 "3. Return a book\n" +
                 "4. List movies\n" +
+                "5. Checkout a movie\n" +
                 "Select an option: ";
     }
 

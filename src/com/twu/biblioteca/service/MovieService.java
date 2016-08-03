@@ -1,6 +1,7 @@
 package com.twu.biblioteca.service;
 
 import com.twu.biblioteca.model.Movie;
+import com.twu.biblioteca.util.UserInput;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -27,12 +28,26 @@ public class MovieService {
         availableMovies.add(movie);
     }
 
-    public boolean checkoutMovie(Movie movie) {
+    public Movie checkoutMovie(Movie movie) {
         if (availableMovies.contains(movie)) {
             availableMovies.remove(movie);
             checkedOutMovies.add(movie);
-            return true;
+            return movie;
         }
-        return false;
+        return null;
+    }
+
+    public Movie obtainMovie() {
+        String movieName = UserInput.obtainInput("Write the movie name: ");
+        return findBookByName(movieName, availableMovies);
+    }
+
+    private Movie findBookByName(String name, List<Movie> movies) {
+        for (Movie movie : movies) {
+            if (name.equals(movie.getName())) {
+                return movie;
+            }
+        }
+        return null;
     }
 }
