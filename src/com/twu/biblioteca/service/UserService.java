@@ -7,26 +7,21 @@ import java.util.List;
 
 public class UserService {
 
-    private static UserService instance;
+    private static List<User> users;
 
-    private List<User> users;
+    private static User loggedIn;
 
-    private User loggedIn;
-
-    private UserService() {
-        populateUsers();
-    }
-
-    public static UserService getInstance() {
-        if (instance == null) {
-            instance = new UserService();
-        }
-        return instance;
-    }
-
-    private void populateUsers() {
+    public static void populateUsers() {
         users = new ArrayList<User>();
         users.add(new User("Xavier", "6543-1234", "12345", "xnaunay@thoughtworks.com", "0987654321"));
+    }
+
+    public static User getLoggedIn() {
+        return loggedIn;
+    }
+
+    public static void setLoggedIn(User loggedIn) {
+        UserService.loggedIn = loggedIn;
     }
 
     public User login(String libraryNumber, String password) {

@@ -17,7 +17,8 @@ public class ReturnBook extends Menu {
     public void executeOption() {
         String libraryNumber = UserInput.obtainInput("Write your library number: ");
         String password = UserInput.obtainInput("Write your password: ");
-        User loggedIn = UserService.getInstance().login(libraryNumber, password);
+        UserService userService = new UserService();
+        User loggedIn = userService.login(libraryNumber, password);
         if (loggedIn != null) {
             BookService bookService = new BookService();
             Book searched = bookService.obtainBook();
