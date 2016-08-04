@@ -13,7 +13,8 @@ public class UserService {
 
     public static void populateUsers() {
         users = new ArrayList<User>();
-        users.add(new User("Xavier", "6543-1234", "12345", "xnaunay@thoughtworks.com", "0987654321"));
+        users.add(new User("Xavier", "654-1234", "12345", "xnaunay@thoughtworks.com", "0987654321"));
+        users.add(new User("Andres", "123-9876", "12345", "andres@gmail.com", "0981234567"));
     }
 
     public static User getLoggedIn() {
