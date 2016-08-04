@@ -28,10 +28,11 @@ public class UserService {
         for (User user : users) {
             if (user.getLibraryNumber().equals(libraryNumber)) {
                 if (user.getPassword().equals(password)) {
-                    return user;
+                    loggedIn = user;
+                    return loggedIn;
                 }
             }
         }
-        return null;
+        return loggedIn;
     }
 }

@@ -13,6 +13,8 @@ public class DisplayUserInformation extends Menu {
     public void executeOption() {
         if (UserService.getLoggedIn() != null) {
             System.out.println(UserService.getLoggedIn().toString());
+        } else {
+            System.out.println("User not logged in, option not available!");
         }
     }
 }
